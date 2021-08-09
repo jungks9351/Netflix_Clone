@@ -1,11 +1,26 @@
 {
-  "name": "Netflix",
+  "name": "netflix",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jungks9351/Netflix_Clone.git"
   },
   "author": "jungjin",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jungks9351/Netflix_Clone/issues"
+  },
+  "homepage": "https://github.com/jungks9351/Netflix_Clone#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }

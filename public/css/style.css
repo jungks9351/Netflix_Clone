@@ -1,0 +1,5 @@
+@import url(./reset.css);
+
+body {
+  background: url(../images/signBG.jpg) no-repeat fixed;
+}

@@ -4,8 +4,20 @@
   font-weight: normal;
   font-style: normal;
 }
+/* 숨긴 콘텐츠 */
+.a11y-hidden{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  clip-path: polygon(0 0, 0 0, 0 0);
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+}
 
 *, *::before, *::after {
+
   box-sizing: border-box;
 }
 
@@ -38,4 +50,9 @@ button {
   border: 0;
   cursor: pointer;
   background-color: inherit;
+}
+
+input {
+  border: none;
+  outline: none;
 }

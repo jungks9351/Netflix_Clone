@@ -1,1 +1,68 @@
 @import url(./reset.css);
+
+body {
+  background: url(../images/signBG.jpg) no-repeat fixed;
+}
+.container {
+  width: 100%;
+}
+h1.main-logo > a > img {
+  width: 220px;
+}
+
+section {
+  width: 600px;
+  margin: 0 auto;
+  padding: 50px 150px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.register-header {
+  color: #fff;
+  font-size: 3rem;
+  display: flex;
+  align-self: flex-start;
+  justify-content: center;
+}
+input {
+  width: 300px;
+  display: block;
+  background: gray;
+  margin: 20px 30px;
+  color: #fff;
+  padding: 15px 10px;
+  border-radius: 5px;
+  font-size: 1.6rem;
+}
+
+input::placeholder {
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.regist-btn {
+  width: 300px;
+  margin: 20px 30px;
+  padding: 15px 10px;
+  text-align: center;
+  background-color: red;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1.6rem;
+}
+
+p {
+  font-size: 1.6rem;
+  color: gray;
+}
+
+p > a{
+  color: #fff;
+}
+
+a:hover {
+  text-decoration: underline;
+}

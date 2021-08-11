@@ -1,7 +1,12 @@
 @import url(./reset.css);
-
-body {
+html {
+  height: 100%;
   background: url(../images/signBG.jpg) no-repeat fixed;
+  
+}
+body {
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .container {
   width: 100%;
@@ -11,10 +16,10 @@ h1.main-logo > a > img {
 }
 
 section {
+  background-color: rgba(0, 0, 0, 0.5);
   width: 600px;
   margin: 0 auto;
   padding: 50px 150px;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;

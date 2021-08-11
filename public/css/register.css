@@ -16,7 +16,7 @@ h1.main-logo > a > img {
 }
 
 section {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   width: 600px;
   margin: 0 auto;
   padding: 50px 150px;
@@ -35,7 +35,7 @@ section {
 input {
   width: 300px;
   display: block;
-  background: gray;
+  background: #333;
   margin: 20px 30px;
   color: #fff;
   padding: 15px 10px;
@@ -45,7 +45,7 @@ input {
 
 input::placeholder {
   font-size: 1.6rem;
-  color: #fff;
+  color: #8c8c8c;
 }
 
 .regist-btn {

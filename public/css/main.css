@@ -1,0 +1,92 @@
+@import url(./reset.css);
+
+body {
+  background-color: #000;
+  font-size: 10px;
+}
+.container {
+  width: 100%;
+}
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  margin: 0 35px;
+  color: #fff;
+  margin-bottom: 30px;
+  display: flex;
+}
+
+.nav-left {
+  display: flex;
+}
+
+.main-logo {
+  width: 120px
+}
+ul.nav-left-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul.nav-left-list > li {
+  padding: 0 15px;
+  font-size: 1.2rem;
+}
+
+ul.nav-left-list > li:hover {
+  text-decoration: underline;
+}
+
+section {
+  padding: 0 50px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+.slider {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider > ul#list {
+  width: 5360px;
+  display: flex;
+  /* transition: all 1s; */
+  transform: translateX(-1340px);
+}
+.slider > ul > li {
+  width: 268px;
+  height: 150px;
+  background-color: gray;
+}
+
+.fas {
+  font-size: 2.4rem;
+  color: #fff;
+}
+.fa-chevron-left {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.fa-chevron-right {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+}
+
+
+
+
+

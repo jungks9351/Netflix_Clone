@@ -118,7 +118,7 @@ const getMovies = async (genreName, $ul) => {
     const $li = document.createElement('li');
     const $img = document.createElement('img');
     const $p = document.createElement('p');
-    $p.setAttribute('value', `${movie.title}`)
+    $p.append(`${movie.title}`);
     $img.setAttribute('src', `${posterFileUrl}${movie.poster_path}`);
     $li.appendChild($img);
     $li.appendChild($p);

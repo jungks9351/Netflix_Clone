@@ -6,60 +6,61 @@ const $list = document.querySelectorAll(".list");
 
 
 // 변수 생성
-
+// slider 변수
 const moveDistance = 1340;
-let locationFlag = 2;
+let locationFlag = 1;
 
+// movielist 생성 변수 
 let movieGenres = [];
-
 const posterFileUrl = 'https://image.tmdb.org/t/p/w500/';
 
 //slider
 
-//nextBtn
+console.log(locationFlag);
+//nextBtn 클릭시 함수 설정
 const nextMove = _.throttle((e) => {
   locationFlag++; // 실행순서 1
+
+  // console.log(locationFlag);
 
   const genreList = e.target.parentNode.firstElementChild;
 
   // 실행순서 2
-  if (locationFlag === 4) {
+  if (locationFlag === 5) {
     // 실행순서 4
     setTimeout(() => {
       genreList.style.transition = 'none';
       genreList.style.transform = 'translateX(-1340px)';
       locationFlag = 1;
-      locationFlag++;
     }, 1000)
   }
   
   // 실행순서 3
-  genreList.style.transform = `translateX(-${moveDistance*(locationFlag-1)}px)`; 
+  genreList.style.transform = `translateX(-${moveDistance*locationFlag}px)`; 
   genreList.style.transition = "all 1s";
   
 }, 1200);
 
-//prevBtn
-
-//클릭시 호출 함수 생성
+//prevBtn 클릭시 함수 설정
 const prevMove = _.throttle((e) => {
   locationFlag--;
 
   const genreList = e.target.parentNode.firstElementChild;
   
+  // console.log(locationFlag);
   //2
-  if (locationFlag === 1) {
+  if (locationFlag === 0) {
     setTimeout(() => {
       genreList.style.transition = "none";
-      genreList.style.transform = `translateX(-2680px)`
-      locationFlag = 3;
+      genreList.style.transform = `translateX(-5360px)`
+      locationFlag = 4;
       
     }, 1000)
   }
   
   // 3
   genreList.style.transition = "all 1s";
-  genreList.style.transform = `translateX(-${moveDistance*(locationFlag-1)}px)`;
+  genreList.style.transform = `translateX(-${moveDistance*(locationFlag)}px)`;
   
 }, 1200);
 
@@ -79,7 +80,6 @@ $list.forEach((list, i) => {
 
 
 // list 생성
-
 
 const getMovies = async (genreName, $ul) => {
   // api 정보 GET
@@ -110,27 +110,28 @@ const getMovies = async (genreName, $ul) => {
   
   const {results:movies} = genreRes;
   
-  
+  // console.log($ul);
   // poster 가져오는 함수 설정
-  console.log(movies);
   movies.forEach((movie)=> {
-    // console.log(movie);
+
     const $li = document.createElement('li');
     const $img = document.createElement('img');
-    const $p = document.createElement('p');
-    $p.append(`${movie.title}`);
-    $img.setAttribute('src', `${posterFileUrl}${movie.poster_path}`);
-    $li.appendChild($img);
-    $li.appendChild($p);
-    $ul.appendChild($li);
 
+    $img.setAttribute('src', `${posterFileUrl}${movie.backdrop_path}`);
+    $li.appendChild($img);
+    $ul.appendChild($li);
     
-  })
+  });
+  
+  cloneList($ul);
+  
+  // console.log($ul.querySelectorAll('li'));
 }
+
 //list 생성 함수
 // const createList = (movielist) => {
-//   console.log(movielist);
-//   const $li = document.createElement('li');
+  //   console.log(movielist);
+  //   const $li = document.createElement('li');
 //   const $img = document.createElement('img');
 //   $li.appendChild($img)
 
@@ -141,6 +142,28 @@ const getMovies = async (genreName, $ul) => {
 
 //   createList(movielist);
 // });
+
+// cloneList 함수 정의
+
+const cloneList = ($ul) => {
+
+  const $sliderList = $ul.querySelectorAll('li');
+  const sliderLengthCount = $sliderList.length-1;
+  for (let i =0; i< 5 ; i++) {
+  
+    const firstCopyList = $sliderList[i].cloneNode(true); // 앞 list 1개 복사
+    $ul.appendChild(firstCopyList);
+    // console.log(`${lastCopyList}`);
+  
+    const lastCopyList = $sliderList[sliderLengthCount-i].cloneNode(true);
+    // console.log(`${lastCopyList}`);
+  
+    $ul.insertBefore(lastCopyList, $ul.firstElementChild);
+  
+  }
+  // console.log($ul.querySelectorAll('li'));
+}
+
 
 // section genre 탐색 함수 설정
 

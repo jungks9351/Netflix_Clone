@@ -50,6 +50,7 @@ section {
   font-size: 1.5rem;
   color: #fff;
   margin-top: 70px;
+  overflow: hidden;
 }
 
 .section-title {
@@ -59,28 +60,35 @@ section {
 .slider {
   width: 100%;
   height: 150px;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 
 .slider > ul.list {
-  width: 5360px;
+  width: 8040px;
   display: flex;
   /* transition: all 1s; */
   transform: translateX(-1340px);
+  column-gap: 5px;
 }
 .slider > ul > li {
   width: 268px;
   height: 150px;
-  background-color: gray;
   color: #fff;
   font-size: 1.2rem;
+
+}
+
+.slider > ul > li:hover {
+  transition: 0.4s all;
+  transform: scale(1.2);
+
 }
 
 .slider > ul > li > img{
-  /* object-fit: contain; */
+  object-fit: cover;
   width: 100%;
-  height: 100%;
+
 }
 
 .slider > ul > li > p {
@@ -89,20 +97,24 @@ section {
 }
 
 .fas {
-  font-size: 2.4rem;
+  width: 50px;
+  height: 150px;
+  font-size: 4rem;
   color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
 }
 .fa-chevron-left {
   /* opacity: 0; */
   position: absolute;
   top: 50%;
-  left: 0;
+  left: -50px;
   transform: translateY(-50%);
 }
 .fa-chevron-right {
   position: absolute;
   top: 50%;
-  right: 0px;
+  right: -50px;
   transform: translateY(-50%);
 }
 

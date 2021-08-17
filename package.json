@@ -1,26 +1,21 @@
 {
-  "name": "netflix",
+  "name": "front",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "joi": "^17.4.2",
+    "mongoose": "^5.13.7",
+    "nodemon": "^2.0.12"
+  },
+  "devDependencies": {},
   "scripts": {
     "start": "nodemon server"
   },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jungks9351/Netflix_Clone.git"
-  },
-  "author": "jungjin",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jungks9351/Netflix_Clone/issues"
-  },
-  "homepage": "https://github.com/jungks9351/Netflix_Clone#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.12"
-  }
+  "author": "",
+  "license": "ISC"
 }

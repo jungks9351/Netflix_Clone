@@ -36,7 +36,7 @@ input {
   width: 300px;
   display: block;
   background: #333;
-  margin: 20px 30px;
+  margin: 20px 30px 0px;
   color: #fff;
   padding: 15px 10px;
   border-radius: 5px;
@@ -70,4 +70,12 @@ p > a{
 
 a:hover {
   text-decoration: underline;
+}
+
+.error-message {
+  padding: 10px 0 3px 0;
+  background-color: #000;
+  font-size: 1.3rem;
+  color: rgba(255, 0, 0, 0.5);
+  margin: 0 30px;
 }

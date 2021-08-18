@@ -111,5 +111,34 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  res.send('테스트 !');
+  const { userId, password } = req.body;
+
+  if (!userId) {
+    res.status(401).send({ message: '아이디를 입력하세요.' });
+    return;
+  }
+
+  if (!password) {
+    res.status(401).send({ message: '비밀번호를 입력하세요.' });
+  }
+
+  try {
+    const user = await User.findUserId(userId);
+
+    // 존재하지 않는 계정
+    if (!user) {
+      res.status(401).send({ message: '가입되지 않은 아이디입니다.' });
+      return;
+    }
+
+    const pwValidation = await user.checkPassword(password);
+
+    // 잘못된 비밀번호
+    if (!pwValidation) {
+      res.status(401).send({ message: '잘못된 비밀번호입니다.' });
+      return;
+    }
+  } catch (e) {
+    res.status(500).send(e);
+  }
 };

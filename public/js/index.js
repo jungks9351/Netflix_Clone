@@ -15,7 +15,7 @@ $loginForm.onsubmit = async (e) => {
   // payload 설정
   const payload = {
     userId: $userId.value,
-    $password: $password.value,
+    password: $password.value,
   };
   // promise 정의
   const promise = await fetch('http://localhost:7000/api/user/login',
@@ -28,21 +28,32 @@ $loginForm.onsubmit = async (e) => {
   // promise를 계속 받아쓸려면 await 정의하기
   const res =  await promise.json();
   // console.log(res);
-
+  
   // promise.status 변화에 의한 정의
+  // console.log($inputs);
   if (promise.status === 401) {
-    
     $inputs.forEach((input) => {
       // console.log(typeof res.message);
+      const errorMessage = input.nextElementSibling.classList.contains('error-message');
+      // console.log(errorMessage);
+      if (errorMessage) {
+        input.nextElementSibling.remove();
+      }
+      
+      
       const $div = document.createElement('div');
       $div.classList.add('error-message');
       $div.append(`${res.message}`);
       
       if (input.id === res.position) {
-        
         input.after($div);
-
       }
-    })
+    });
   }
+  if (promise.status === 200) {
+
+    localStorage.setItem('token', `${res.accessToken}`);
+    window.location.href = '../main.html';
+  }
+  
 }

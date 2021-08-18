@@ -15,7 +15,6 @@ exports.test = async (req, res) => {
 //   nickname: ""
 // }
 exports.register = async (req, res) => {
-
   const { userId, password, passwordConfirm, nickname } = req.body;
 
   const idSchema = Joi.string()
@@ -51,51 +50,56 @@ exports.register = async (req, res) => {
   const pwResult = pwSchema.validate(password);
   const pwConfirmResult = pwConfirmSchema.validate({ password, passwordConfirm });
   const nicknameResult = nicknameSchema.validate(nickname);
-  
+
   const exists = await User.findUserId(userId);
 
   if (exists) {
     res.status(409).send({
       position: 'userId',
-      message: '중복된 아이디입니다.'}); // 아이디 중복
+      message: '중복된 아이디입니다.',
+    }); // 아이디 중복
     return;
   }
-  
+
   if (idResult.error) {
     res.status(400).send({
       position: 'userId',
-      message: '잘못된 아이디입니다.'});
+      message: '잘못된 아이디입니다.',
+    });
     return;
   }
 
   if (pwResult.error) {
     res.status(400).send({
       position: 'password',
-      message: '잘못된 비밀번호입니다.'});
+      message: '잘못된 비밀번호입니다.',
+    });
     return;
   }
 
   if (pwConfirmResult.error) {
     res.status(400).send({
       position: 'passwordConfirm',
-      message: '비밀번호가 일치하지 않습니다.'});
+      message: '비밀번호가 일치하지 않습니다.',
+    });
     return;
   }
 
   if (nicknameResult.error) {
     res.status(400).send({
       position: 'nickName',
-      message: '잘못된 닉네임입니다.'});
+      message: '잘못된 닉네임입니다.',
+    });
     return;
   }
 
-
   try {
-
     const user = new User({
       userId,
       nickname,
     });
+
+    console.log(user);
 
     await user.setPassword(password);
     await user.save();
@@ -104,4 +108,8 @@ exports.register = async (req, res) => {
   } catch (e) {
     res.status(500).send(e);
   }
+};
+
+exports.login = async (req, res) => {
+  res.send('테스트 !');
 };

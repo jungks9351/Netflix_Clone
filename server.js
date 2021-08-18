@@ -31,8 +31,8 @@ app.use(
 // json = 요청 body의 application/json 구문분석을 위한 미들웨어
 app.use(express.json());
 
-// unrencoded = 요청 body의 application/x-www-form-urlencoded 구문분석을 위한 미들웨어
-app.use(express.urlencoded({ extended: true })); // true면 qs, false면
+// unrencoded = 요청 body의 application/x-www-form-urlencoded 구문분석을 위한 미들웨어 => bodyparser의 역할
+app.use(express.urlencoded({ extended: true })); // true면 qs, false면 query-string 라이브러리 사용
 
 app.use(express.static('public'));
 app.use(express.json());

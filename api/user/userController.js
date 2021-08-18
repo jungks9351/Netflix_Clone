@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const { schema } = require('../../models/user');
 const User = require('../../models/user');
 
 exports.test = async (req, res) => {
@@ -110,16 +109,24 @@ exports.register = async (req, res) => {
   }
 };
 
+// 로그인 요청 => POST
+// /api/user/login
+// {
+//   userId: "",
+//   password: ""
+// }
 exports.login = async (req, res) => {
   const { userId, password } = req.body;
 
   if (!userId) {
-    res.status(401).send({ message: '아이디를 입력하세요.' });
+    res.status(401).send({ position: 'userId', message: '아이디를 입력하세요.' });
     return;
   }
 
   if (!password) {
-    res.status(401).send({ message: '비밀번호를 입력하세요.' });
+    res
+      .status(401)
+      .send({ position: 'password', message: '비밀번호를 입력하세요.' });
   }
 
   try {
@@ -127,7 +134,9 @@ exports.login = async (req, res) => {
 
     // 존재하지 않는 계정
     if (!user) {
-      res.status(401).send({ message: '가입되지 않은 아이디입니다.' });
+      res
+        .status(401)
+        .send({ position: 'userId', message: '가입되지 않은 아이디입니다.' });
       return;
     }
 
@@ -135,9 +144,15 @@ exports.login = async (req, res) => {
 
     // 잘못된 비밀번호
     if (!pwValidation) {
-      res.status(401).send({ message: '잘못된 비밀번호입니다.' });
+      res
+        .status(401)
+        .send({ position: 'password', message: '잘못된 비밀번호입니다.' });
       return;
     }
+
+    // 토큰 발급
+    const token = user.generateToken();
+    res.status(200).json({ message: '로그인 성공', accessToken: token });
   } catch (e) {
     res.status(500).send(e);
   }

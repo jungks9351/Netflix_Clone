@@ -4,7 +4,11 @@ const $prevBtn = document.querySelectorAll("#prevBtn");
 const $nextBtn = document.querySelectorAll("#nextBtn");
 const $list = document.querySelectorAll(".list");
 
-
+const token = localStorage.getItem('token');
+// console.log(token);
+if (!token) {
+  window.location.href = '../index.html'
+}
 // 변수 생성
 // slider 변수
 const moveDistance = 1340;
@@ -16,7 +20,7 @@ const posterFileUrl = 'https://image.tmdb.org/t/p/w500/';
 
 //slider
 
-console.log(locationFlag);
+// console.log(locationFlag);
 //nextBtn 클릭시 함수 설정
 const nextMove = _.throttle((e) => {
   locationFlag++; // 실행순서 1

@@ -1,4 +1,5 @@
 @import url(./reset.css);
+
 html {
   height: 100%;
 }
@@ -13,42 +14,48 @@ body {
 }
 header {
   background-color: #000;
-  position: -webkit-sticky;
   position: sticky;
   z-index: 1;
   top: 0px;
-  margin: 0 35px;
-  color: #fff;
   margin-bottom: 30px;
   display: flex;
-}
-
-.nav-left {
-  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main-logo {
   width: 120px
 }
-ul.nav-left-list{
+
+.nav-left {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
-ul.nav-left-list > li {
+.nav-left-list{
+  display: flex;
+  align-items: center;
+}
+
+.nav-left-list > li {
   padding: 0 15px;
   font-size: 1.2rem;
 }
 
-ul.nav-left-list > li:hover {
-  text-decoration: underline;
+.nav-right {
+  display: flex;
+  align-content: center;
+}
+.logout-btn {
+  display: block;
+  margin: 20px;
+  color: #fff;
+  font-size: 1.2rem;
 }
 
 section {
   padding: 0 50px;
   font-size: 1.5rem;
-  color: #fff;
   margin-top: 70px;
   overflow: hidden;
 }
@@ -101,8 +108,6 @@ section {
   height: 150px;
   font-size: 4rem;
   color: #fff;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1;
 }
 .fa-chevron-left {
   /* opacity: 0; */

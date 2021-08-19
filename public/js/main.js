@@ -3,12 +3,17 @@ const $sections = document.querySelectorAll("#section");
 const $prevBtn = document.querySelectorAll("#prevBtn");
 const $nextBtn = document.querySelectorAll("#nextBtn");
 const $list = document.querySelectorAll(".list");
+const $logoutBtn = document.querySelector('#logoutBtn');
+
+//logout 
 
 const token = localStorage.getItem('token');
-// console.log(token);
-if (!token) {
+
+$logoutBtn.onclick =  () => {
+  localStorage.removeItem('token');
   window.location.href = '../index.html'
 }
+
 // 변수 생성
 // slider 변수
 const moveDistance = 1340;

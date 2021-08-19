@@ -7,8 +7,11 @@
   <link rel="icon" href="./images/netflix_icon.png">
   <title>Netflix</title>
   <link rel="stylesheet" href="./css/main.css">
+  <!-- fontawesome -->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <!-- throttle -->
   <script src=https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js defer></script> 
+  <!-- main.js -->
   <script src="./js/main.js" defer></script>
 </head>
 <body>
@@ -16,12 +19,17 @@
     <!-- header menu -->
     <header>
       <div class="nav-left">
-        <img class="main-logo" src="./images/logo.png" alt="">
+      <img class="main-logo" src="./images/logo.png" alt="">
         <ul class="nav-left-list">
           <li><a href="#">홈</a></li>
-          <li><a href="#">TV 프로그램</a></li>
-          <li><a href="#">영화</a></li>
           <li><a href="#">내가 찜한 콘텐츠</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-right-list">
+          <li>
+            <button id="logoutBtn" class="logout-btn">로그아웃</button>
+          </li>
         </ul>
       </div>
     </header>

@@ -47,6 +47,7 @@ a {
 }
 
 button {
+  font-family: 'Cafe24Ssurround';
   border: 0;
   cursor: pointer;
   background-color: inherit;

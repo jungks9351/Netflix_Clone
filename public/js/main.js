@@ -5,6 +5,8 @@ const $nextBtn = document.querySelectorAll("#nextBtn");
 const $list = document.querySelectorAll(".list");
 const $logoutBtn = document.querySelector('#logoutBtn');
 
+
+
 //logout 
 
 const token = localStorage.getItem('token');
@@ -22,6 +24,9 @@ let locationFlag = 1;
 // movielist 생성 변수 
 let movieGenres = [];
 const posterFileUrl = 'https://image.tmdb.org/t/p/w500/';
+
+// bookmark 변수
+let bookmarkMovies = [];
 
 //slider
 
@@ -45,7 +50,7 @@ const nextMove = _.throttle((e) => {
   }
   
   // 실행순서 3
-  genreList.style.transform = `translateX(-${moveDistance*locationFlag}px)`; 
+  genreList.style.transform = `translateX(-${moveDistance*(locationFlag-1)}px)`; 
   genreList.style.transition = "all 1s";
   
 }, 1200);
@@ -90,7 +95,7 @@ $list.forEach((list, i) => {
 
 // list 생성
 
-const getMovies = async (genreName, $ul) => {
+const getMovies = async (genreName, $ul, index) => {
   // api 정보 GET
   
   const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=b1f42a273f605f2b79d537a4c1929770&language=ko-KR');
@@ -125,32 +130,32 @@ const getMovies = async (genreName, $ul) => {
 
     const $li = document.createElement('li');
     const $img = document.createElement('img');
+    const $div = document.createElement('div');
+    const $btn = document.createElement('button');
+    $li.classList.add('movie-item');
+    $div.classList.add('bookmark');
+    $btn.classList.add('bookmark-btn', 'far', 'fa-heart');
+    $btn.setAttribute('id', `${movie.id}`);
+    $div.appendChild($btn);
+
 
     $img.setAttribute('src', `${posterFileUrl}${movie.backdrop_path}`);
     $li.appendChild($img);
+    $li.appendChild($div);
     $ul.appendChild($li);
     
   });
   
   cloneList($ul);
-  
+  if (index === 3) {
+    
+    const $bookmarkBtn = document.querySelectorAll('.bookmark > button');
+    bookmarkMovies = $bookmarkBtn;
+    addBookmark(bookmarkMovies);
+  }
+
   // console.log($ul.querySelectorAll('li'));
 }
-
-//list 생성 함수
-// const createList = (movielist) => {
-  //   console.log(movielist);
-  //   const $li = document.createElement('li');
-//   const $img = document.createElement('img');
-//   $li.appendChild($img)
-
-//   movielist.appendChild($li);
-// }
-
-// $list.forEach((movielist, i) => {
-
-//   createList(movielist);
-// });
 
 // cloneList 함수 정의
 
@@ -173,12 +178,37 @@ const cloneList = ($ul) => {
   // console.log($ul.querySelectorAll('li'));
 }
 
-
 // section genre 탐색 함수 설정
 
 [...$sections].forEach((section, i) => {
 
   const genre = section.firstElementChild.id;
   
-  getMovies(genre, $list[i]);
+  getMovies(genre, $list[i], i);
 })
+
+//bookmark 추가 생성 함수 정의
+const addBookmark = (bookmarks) => {
+  // console.log(bookmarks);
+  // boomarks : bookmarkBtn NodeList 배열이다.
+  bookmarks.forEach((bookmark) => {
+    // bookmark : bookmarkBtn 의 DOM이다.
+    // console.log(bookmark);
+    // bookmark 추가 함수 정의
+    bookmark.onclick = async ({target}) => {
+      const bookmarkId = target.id;
+      const poster = target.parentNode.previousElementSibling.src;
+      const payload = {
+        poster: `${poster}`,
+        token: localStorage.getItem('token')
+      };
+      const res = await fetch(`http://localhost:7000/api/bookmark?id=${bookmarkId}`,
+      {
+        method: 'POST',
+        headers: { 'content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      // res.json();
+    }
+  })
+}

@@ -11,10 +11,12 @@ body {
 }
 .container {
   width: 100%;
+  overflow: hidden;
 }
 header {
   background-color: #000;
-  position: sticky;
+  width: 100%;
+  position: fixed;
   z-index: 1;
   top: 0px;
   margin-bottom: 30px;
@@ -53,11 +55,34 @@ header {
   font-size: 1.2rem;
 }
 
+.iframe-container {
+  position: relative;
+  /* z-index: -10; */
+  /* height: 500px; */
+  /* margin-top: -150px; */
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  z-index: -1;
+}
+.iframe-container iframe, .iframe-container object, .iframe-container embed{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -58px;
+  left: 0;
+}
+.section-container {
+  margin-top: -190px;
+  margin-bottom: 50px;
+  background-color: #000;
+}
 section {
   padding: 0 50px;
   font-size: 1.5rem;
   margin-top: 70px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .section-title {
@@ -75,10 +100,12 @@ section {
   width: 8040px;
   display: flex;
   /* transition: all 1s; */
-  transform: translateX(-1340px);
+  /* transform: translateX(-1340px); */
   column-gap: 5px;
+  position: relative;
 }
 .slider > ul > li {
+  /* position: absolute; */
   width: 268px;
   height: 150px;
   color: #fff;
@@ -87,21 +114,39 @@ section {
 }
 
 .slider > ul > li:hover {
-  transition: 0.4s all;
-  transform: scale(1.2);
-
+  /* position: absolute; */
+  transition: 1s all;
+  transform: scale(1.5);
+  z-index: 10;
 }
+
 
 .slider > ul > li > img{
   object-fit: cover;
   width: 100%;
-
+  
+}
+.bookmark {
+  padding: 0 20px;
+  display: none;
+  transition: 0.7s all;
+  background-color: #000;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+}
+.slider > ul > li:hover > .bookmark {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.slider > ul > li > p {
+.bookmark-btn {
+  padding: 8px;
   color: #fff;
-  height: 20px;
+  font-size: 2.1rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
 }
+
 
 .fas {
   width: 50px;

@@ -9,7 +9,6 @@ const UserSchema = new Schema({
   userId: String,
   hashedPassword: String,
   nickname: String,
-  bookmarks: [String],
 });
 
 // this는 문서 인스턴스를 가리킨다

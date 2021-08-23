@@ -9,14 +9,12 @@ const mongoose = require('mongoose');
 //  Authorization: token
 // }
 // {
-//   poster: 'url',
-//   token: ''
+//   poster: 'url'
 // }
 exports.addBookmark = async (req, res) => {
   // poster, token은 필수
   const schema = Joi.object().keys({
     poster: Joi.string().required(),
-    token: Joi.string().required(),
   });
 
   const result = schema.validate(req.body);

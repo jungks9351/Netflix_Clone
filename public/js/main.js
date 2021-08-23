@@ -23,8 +23,6 @@ let locationFlag = 1;
 let movieGenres = [];
 const posterFileUrl = 'https://image.tmdb.org/t/p/w500/';
 
-// bookmark 변수
-let bookmarkMovies = [];
 
 //slider
 
@@ -126,7 +124,7 @@ const getMovies = async (genreName, $ul, index) => {
     const $btn = document.createElement('button');
     $li.classList.add('movie-item');
     $div.classList.add('bookmark');
-    $btn.classList.add('bookmark-btn', 'far', 'fa-heart');
+    $btn.classList.add('bookmark-btn','fas', 'fa-heart');
     $btn.setAttribute('id', `${movie.id}`);
     $div.appendChild($btn);
 
@@ -142,7 +140,6 @@ const getMovies = async (genreName, $ul, index) => {
     bookmarkMovies = $bookmarkBtn;
     addBookmark(bookmarkMovies);
   }
-
   // console.log($ul.querySelectorAll('li'));
 };
 

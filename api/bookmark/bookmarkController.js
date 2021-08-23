@@ -73,3 +73,21 @@ exports.removeBookmark = async (req, res) => {
     res.status(500).send(e);
   }
 };
+
+// bookmark 리스트 요청 => GET
+// /api/bookmark/list
+// headers: {
+//  Authorization: token
+// }
+exports.getBookmarkList = async (req, res) => {
+  const { authorization: token } = req.headers;
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { userId } = decoded;
+
+    const { bookmarks } = await Bookmarks.findOne({ userId }).exec();
+    res.status(200).json(bookmarks);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+};

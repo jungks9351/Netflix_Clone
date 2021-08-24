@@ -36,7 +36,7 @@ const nextMove = _.throttle(e => {
   const genreList = e.target.parentNode.firstElementChild;
 
   // 실행순서 2
-  if (locationFlag === 5) {
+  if (locationFlag === 6) {
     // 실행순서 4
     setTimeout(() => {
       genreList.style.transition = 'none';

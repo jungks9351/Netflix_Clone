@@ -1,0 +1,72 @@
+@import url(./reset.css);
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  background-color: #000;
+  font-size: 10px;
+  color: #fff;
+}
+/* header start */
+header {
+  background-color: #000;
+  width: 100%;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-logo {
+  width: 120px
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left-list{
+  display: flex;
+  align-items: center;
+}
+
+.nav-left-list > li {
+  padding: 0 15px;
+  font-size: 1.2rem;
+}
+
+.nav-right {
+  display: flex;
+  align-content: center;
+}
+.logout-btn {
+  display: block;
+  margin: 20px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+/* header end */
+/* section start */
+.bookmark-list {
+  width: 100%;
+  /* margin: 0 auto; */
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+}
+.bookmark-item {
+  width: 350px;
+  padding: 10px;
+}
+.bookmark-item > img{
+  width: 100%;
+}
+/* section end */

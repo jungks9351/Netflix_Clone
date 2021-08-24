@@ -138,7 +138,9 @@ const getMovies = async (genreName, $ul, index) => {
   if (index === 3) {
     const $bookmarkBtn = document.querySelectorAll('.bookmark > button');
     bookmarkMovies = $bookmarkBtn;
-    addBookmark(bookmarkMovies);
+    // addBookmark(bookmarkMovies);
+    const $bookmarkBtns = document.querySelectorAll('.bookmark > button');
+    bookmarkCtrl($bookmarkBtns);
   }
   // console.log($ul.querySelectorAll('li'));
 };
@@ -169,35 +171,50 @@ const cloneList = $ul => {
   getMovies(genre, $list[i], i);
 });
 
-//bookmark 추가 생성 함수 정의
-const addBookmark = bookmarks => {
-  // console.log(bookmarks);
-  // boomarks : bookmarkBtn NodeList 배열이다.
-  bookmarks.forEach(bookmark => {
-    // bookmark : bookmarkBtn 의 DOM이다.
-    // console.log(bookmark);
-    // bookmark 추가 함수 정의
-    bookmark.onclick = async ({ target }) => {
-      const bookmarkId = target.id;
-      const poster = target.parentNode.previousElementSibling.src;
-      const payload = {
-        poster: `${poster}`,
-        token: localStorage.getItem('token'),
-      };
-      const res = await fetch(
-        `http://localhost:7000/api/bookmark?id=${bookmarkId}`,
+//bookmark control 함수 정의
+const bookmarkCtrl = (bookmarkBtns) => {
+
+  // boomarkBtns : bookmarkBtn NodeList 배열이다.
+bookmarkBtns.forEach((bookmarkBtn) => {
+    // bookmarkBtn : bookmarkBtn 의 DOM이다.
+    // bookmarkBtn 추가 함수 정의
+    bookmarkBtn.onclick = async ({target}) => {
+      if (!target.classList.contains('bookmarked')) {
+
+        const poster = target.parentNode.previousElementSibling.src;
+        const payload = {
+          poster: `${poster}`
+        };
+        const bookmarkId = target.id;
+        const token = localStorage.getItem('token');
+
+        const headers = new Headers({
+          'content-Type' : 'application/json',
+          'Authorization' : `${token}`
+        });
+        const res = await fetch(`http://localhost:7000/api/bookmark?id=${bookmarkId}`,
         {
           method: 'POST',
-          headers: { 'content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+          headers ,
+          body: JSON.stringify(payload)
+        });
+        // const bookmarks = await res.json();
+        if (res.status === 200) {
+          target.classList.toggle('bookmarked');
         }
-      );
-      // res.json();
-    };
-  });
-};
-
-const bookmarkCtrl = () => {
-  const test = document.querySelectorAll('button');
-  console.log(test);
-};
+      } else {
+        const bookmarkId = target.id;
+        const token = localStorage.getItem('token');
+        const res =  await fetch(`http://localhost:7000/api/bookmark?id=${bookmarkId}`,
+          {
+            method: 'DELETE',
+            headers: {'Authorization' : `${token}`}
+          });
+        // const bookmarks = await res.json();
+        if (res.status === 200) {
+          bookmarkBtn.classList.toggle('bookmarked');
+        }
+      }
+    }
+  })
+}

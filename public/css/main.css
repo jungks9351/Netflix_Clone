@@ -131,8 +131,6 @@ section {
   display: none;
   transition: 0.7s all;
   background-color: #000;
-  /* display: flex; */
-  /* justify-content: flex-end; */
 }
 .slider > ul > li:hover > .bookmark {
   display: flex;

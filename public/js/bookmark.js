@@ -14,7 +14,7 @@ $logoutBtn.onclick = () => {
 
 // bookmark GET
 
-const getBookmarks = async () => {
+window.onload = async function   getBookmarks () {
   
   const token = localStorage.getItem('token')
   const res =  await fetch('http://localhost:7000/api/bookmark/list', {
@@ -45,7 +45,6 @@ const getBookmarks = async () => {
   // console.log($bookmarkBtns);
   deleteBookmark($bookmarkBtns);
 };
-getBookmarks();
 
 const deleteBookmark = (bookmarkBtns) => {
   bookmarkBtns.forEach((bookmarkBtn) => {

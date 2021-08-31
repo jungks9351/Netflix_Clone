@@ -53,7 +53,8 @@ const deleteBookmark = (bookmarkBtns) => {
       if (!target.classList.contains('bookmarked')) return;
       const bookmarkId = target.id;
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:7000/api/bookmark?id=${bookmarkId}`, 
+      const res = await fetch(
+        `http://localhost:7000/api/bookmark?id=${bookmarkId}`,
       {
         method: 'DELETE',
         headers: {'Authorization': `${token}`}
